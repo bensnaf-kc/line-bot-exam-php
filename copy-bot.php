@@ -2,6 +2,7 @@
 
 require "vendor/autoload.php";
 require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
+
 $servername = "localhost";
  $username = "root";
  $password = "";
@@ -13,6 +14,7 @@ $servername = "localhost";
  $errorcode = $mysql->connect_error;
  print("MySQL(Connection)> ".$errorcode);
  }
+
 $access_token = 'Yc7epxagkTDtxlDZVmNicqE921hrLs3jn6fH/IWym3c1Wf7wHTuG7CfHoSuROOXiq0QGv37GiIHuMZvYVbAfcySjFifvh2kFd4/5azEHb1ZzyFvkFI6gQKR9JfBN1gdxwopvrIqeGf2hS1JD1BJ2eQdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
@@ -26,7 +28,7 @@ if (!is_null($events['events'])) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
-			$text = $event['source']['userId'];
+			$text = $event["message"]["text"];
 			$getText = $mysql->query("SELECT * FROM `fixcar` WHERE `f_tel`='$text' or f_line = '$text'");
  			$getuserNum = $getText->num_rows;
 			// Get replyToken
