@@ -44,11 +44,21 @@ function setCon($text){
 		}';
 		return $messages;
 	}else{
-		$messages = '{
-			"type" : "text",
-			"text" : "Success"
-		}';
-		return $messages;
+		$sql = "SELCET * FROM fixcar WHERE f_tel = '$text'";
+		$result = $conn->query($sql);
+		
+		if ($result->num_rows > 0) {
+			while($row = $result->fetch_assoc()) {
+				$message = $row['type_idfix'];
+			}
+				return $messages;
+		}else{
+			$messages = '{
+				"type" : "text",
+				"text" : "Success"
+				}';
+			return $messages;	
+		}
 	}
 }
 
