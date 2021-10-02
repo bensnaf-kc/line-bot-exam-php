@@ -37,7 +37,7 @@ function setFind($text){
 	
 	$sql = "SELECT * FROM fixcar where f_tel ='".$text."' ";
 	$result = $conn->query($sql);
-	
+	$message = "555";
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
 			if($row['type_idfix'] == 1){
