@@ -31,7 +31,7 @@ if (!is_null($events['events'])) {
 function setText(){
 	$messages = '{
 		"type" : "text",
-		"text" : "ไม่เข้าใจอ่ะ"
+		"text" : "ไม่รู้ครับ"
 	}';
 	return $messages;
 }
