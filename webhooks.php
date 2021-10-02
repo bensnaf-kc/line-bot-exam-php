@@ -21,7 +21,7 @@ if (!is_null($events['events'])) {
 			## เปิดสำหรับใช้่งาน mysql message
 			// $text = searchMessage($text ,$conn);
 			// $messages = setText($text);
-			$messages = searchMessage();
+			$messages = setText();
 			sentToLine( $replyToken , $access_token  , $messages );
 		}
 	}
