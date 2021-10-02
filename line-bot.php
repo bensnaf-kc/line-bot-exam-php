@@ -18,7 +18,7 @@ if (!is_null($events['events'])) {
 			error_log($event['message']['text']);
 			$text = $event['message']['text'];
 			$replyToken = $event['replyToken'];
-			$messages = setFind($text);
+			$messages = setText($text);
 			sentToLine( $replyToken , $access_token  , $messages );
 		}
 	}
