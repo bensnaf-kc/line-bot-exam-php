@@ -35,32 +35,53 @@ function setText($text){
 
 function setFind($text){
 	
-	$sql = "SELECT * FROM fixcar where f_tel ='".$text."' ";
+	$sql = "SELECT * FROM fixcar WHERE f_tel = '$text'";
 	$result = $conn->query($sql);
-	$message = "555";
+	
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
 			if($row['type_idfix'] == 1){
-				$message = "รอดำเนินการ";
+				$messages = '{
+					"type" : "text",
+					"text" : "รอดำเนินการ"
+				}';
 			}
 			else if($row['type_idfix'] == 2){
-				$message = "กำลังซ่อม";
+				$messages = '{
+					"type" : "text",
+					"text" : "กำลังซ่อม"
+				}';
 			}
 			else if($row['type_idfix'] == 3){
-				$message = "ซ่อมเสร็จ";
+				$messages = '{
+					"type" : "text",
+					"text" : "ซ่อมสำเร็จ"
+				}';
 			}
 			else if($row['type_idfix'] == 4){
-				$message = "รอการชำระเงิน";
+				$messages = '{
+					"type" : "text",
+					"text" : "รอการชำระเงิน"
+				}';
 			}
 			else if($row['type_idfix'] == 5){
-				$message = "ชำระเงินเรียบร้อย";
+				$messages = '{
+					"type" : "text",
+					"text" : "ชำระเงินเรียบร้อย"
+				}';
 			}
 			else if($row['type_idfix'] == 6){
-				$message = "ระงับ";
+				$messages = '{
+					"type" : "text",
+					"text" : "ระงับ"
+				}';
 			}
 		}
 	} else {
-		$message = "ไม่เข้าใจอ่ะ";
+		$messages = '{
+			"type" : "text",
+			"text" : "กรุณาพิมพ์ใหม่!"
+		}';
 	}
 	$conn->close();
 	return $message;
