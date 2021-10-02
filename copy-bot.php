@@ -9,11 +9,6 @@ $servername = "localhost";
  $dbname = "db_systemgarage";
  $mysql = new mysqli($servername, $username, $password, $dbname);
  mysqli_set_charset($mysql, "utf8");
- 
- if ($mysql->connect_error){
- $errorcode = $mysql->connect_error;
- print("MySQL(Connection)> ".$errorcode);
- }
 
 $access_token = 'Yc7epxagkTDtxlDZVmNicqE921hrLs3jn6fH/IWym3c1Wf7wHTuG7CfHoSuROOXiq0QGv37GiIHuMZvYVbAfcySjFifvh2kFd4/5azEHb1ZzyFvkFI6gQKR9JfBN1gdxwopvrIqeGf2hS1JD1BJ2eQdB04t89/1O/w1cDnyilFU=';
 
