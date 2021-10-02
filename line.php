@@ -41,9 +41,9 @@
     $replyText["text"] = "สวัสดีคับบบบ";
   } else {
     while($row = $getUser->fetch_assoc()){
-      $Name = $row['Name'];
-      $Surname = $row['Surname'];
-      $CustomerID = $row['CustomerID'];
+      $Name = $row['id_fix'];
+      $Surname = $row['id_car'];
+      $CustomerID = $row['type_idfix'];
     }
     $replyText["text"] = "สวัสดีคุณ $Name $Surname (#$CustomerID)";
   }
