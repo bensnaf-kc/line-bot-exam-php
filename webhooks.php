@@ -28,7 +28,7 @@ if (!is_null($events['events'])) {
 }
 
 
-function setText( $text){
+function setText($text){
 	$messages = [
 		'type' => 'text',
 		'text' => $text
