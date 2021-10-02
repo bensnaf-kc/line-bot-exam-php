@@ -59,6 +59,11 @@ function setCon($text){
 			}
 				return $messages;	
 		}
+		$messages = '{
+			"type" : "text",
+			"text" : "'.$text.'"
+			}';
+		return $messages;
 	}
 }
 
