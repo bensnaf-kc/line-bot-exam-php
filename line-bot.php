@@ -34,61 +34,64 @@ function setText($text){
 }
 
 function setFind($text){
-	
-	$sql = "SELECT * FROM fixcar WHERE f_tel = '".$text."'";
-	$result = $conn->query($sql);
-	
-	if ($result->num_rows > 0) {
-		while($row = $result->fetch_assoc()) {
-			if($row['type_idfix'] == 1){
-				$messages = '{
-					"type" : "text",
-					"text" : "รอดำเนินการ"
-				}';
-			}
-			else if($row['type_idfix'] == 2){
-				$messages = '{
-					"type" : "text",
-					"text" : "กำลังซ่อม"
-				}';
-			}
-			else if($row['type_idfix'] == 3){
-				$messages = '{
-					"type" : "text",
-					"text" : "ซ่อมสำเร็จ"
-				}';
-			}
-			else if($row['type_idfix'] == 4){
-				$messages = '{
-					"type" : "text",
-					"text" : "รอการชำระเงิน"
-				}';
-			}
-			else if($row['type_idfix'] == 5){
-				$messages = '{
-					"type" : "text",
-					"text" : "ชำระเงินเรียบร้อย"
-				}';
-			}
-			else if($row['type_idfix'] == 6){
-				$messages = '{
-					"type" : "text",
-					"text" : "ระงับ"
-				}';
-			}
-		}
-	} else {
+	if($conn->connect_errno){
 		$messages = '{
-			"type" : "text",
-			"text" : "กรุณาพิมพ์ใหม่!"
+		"type" : "text",
+		"text" : "Failed to connect"
 		}';
+		return $messages;
+	}else{
+		$sql = "SELECT * FROM fixcar WHERE f_tel = '$text'";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			while($row = $result->fetch_assoc()) {
+				if($row['type_idfix'] == 1){
+					$messages = '{
+						"type" : "text",
+						"text" : "รอดำเนินการ"
+					}';
+				}
+				else if($row['type_idfix'] == 2){
+					$messages = '{
+						"type" : "text",
+						"text" : "กำลังซ่อม"
+					}';
+				}
+				else if($row['type_idfix'] == 3){
+					$messages = '{
+						"type" : "text",
+						"text" : "ซ่อมสำเร็จ"
+					}';
+				}
+				else if($row['type_idfix'] == 4){
+					$messages = '{
+						"type" : "text",
+						"text" : "รอการชำระเงิน"
+					}';
+				}
+				else if($row['type_idfix'] == 5){
+					$messages = '{
+						"type" : "text",
+						"text" : "ชำระเงินเรียบร้อย"
+					}';
+				}
+				else if($row['type_idfix'] == 6){
+					$messages = '{
+						"type" : "text",
+						"text" : "ระงับ"
+					}';
+				}
+			}
+		} else {
+			$messages = '{
+				"type" : "text",
+				"text" : "กรุณาพิมพ์ใหม่!"
+			}';
+		}
+		$conn->close();
+		return $message;
 	}
-	$messages = '{
-			"type" : "text",
-			"text" : "กรุณาพิมพ์ใหม่!"
-		}';
-	$conn->close();
-	return $message;
 }
 
 function sentToLine($replyToken , $access_token  , $messages ){
@@ -115,4 +118,5 @@ function sentToLine($replyToken , $access_token  , $messages ){
 	error_log($result);
 	error_log("send ok");
 }
+?>
 
