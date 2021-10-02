@@ -35,7 +35,7 @@ function setText($text){
 
 function setFind($text){
 	
-	$sql = "SELECT * FROM fixcar WHERE f_tel = '$text'";
+	$sql = "SELECT * FROM fixcar WHERE f_tel = '".$text."'";
 	$result = $conn->query($sql);
 	
 	if ($result->num_rows > 0) {
@@ -83,6 +83,10 @@ function setFind($text){
 			"text" : "กรุณาพิมพ์ใหม่!"
 		}';
 	}
+	$messages = '{
+			"type" : "text",
+			"text" : "กรุณาพิมพ์ใหม่!"
+		}';
 	$conn->close();
 	return $message;
 }
