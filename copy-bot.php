@@ -35,12 +35,12 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
-			if ($getuserNum == "0"){
-			     $messages = [
-			     "type" => "text",
-			     "text" => "ไม่มีข้อมูลที่ต้องการ"
-			     ];
-			 } else {
+// 			if ($getuserNum == "0"){
+// 			     $messages = [
+// 			     "type" => "text",
+// 			     "text" => "ไม่มีข้อมูลที่ต้องการ"
+// 			     ];
+// 			 } else {
 
 // 			   while($row = mysqli_fetch_array($getText)){
 // 				$Textcar = $row[0];
