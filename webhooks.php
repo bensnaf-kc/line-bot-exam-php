@@ -44,26 +44,21 @@ function setCon($text){
 		}';
 		return $messages;
 	}else{
-		$sql = "SELCET * FROM fixcar WHERE f_tel = '".$text."'";
-		$result = $conn->query($sql);
+		$getText = $mysql->query("SELECT * FROM `fixcar` WHERE `f_tel`='$text'");
+		$getNum = $getText->num_rows;
 		
-		if ($result->num_rows > 0) {
-			while($row = $result->fetch_assoc()) {
-				$message = $row['type_idfix'];
-			}
-				return $messages;
-		}else{
+		if ($getuserNum == "0") {
 			$messages = '{
-				"type" : "text",
-				"text" : "Success"
-				}';
-			return $messages;	
-		}
-		$messages = '{
 				"type" : "text",
 				"text" : "Not enter if else"
 				}';
 			return $messages;
+		}else{
+			while($row = $result->fetch_assoc()) {
+				$message = $row['type_idfix'];
+			}
+				return $messages;	
+		}
 	}
 }
 
