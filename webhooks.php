@@ -59,6 +59,11 @@ function setCon($text){
 				}';
 			return $messages;	
 		}
+		$messages = '{
+				"type" : "text",
+				"text" : "Not enter if else"
+				}';
+			return $messages;
 	}
 }
 
