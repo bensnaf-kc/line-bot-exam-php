@@ -1,5 +1,5 @@
 <?php 
-
+include('connect.php');
 require "vendor/autoload.php";
 // include "admin/config.php";
 require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
@@ -18,7 +18,6 @@ if (!is_null($events['events'])) {
 			error_log($event['message']['text']);
 			$text = $event['message']['text'];
 			$replyToken = $event['replyToken'];
-			// $text = searchMessage($text ,$conn);
 			$messages = setFind($text);
 			sentToLine( $replyToken , $access_token  , $messages );
 		}
@@ -35,12 +34,6 @@ function setText($text){
 }
 
 function setFind($text){
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "db_systemgarage";
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	$mysqli_set_charset($mysql, "utf8");
 	
 	$sql = "SELECT * FROM fixcar where f_tel ='".$text."' ";
 	$result = $conn->query($sql);
