@@ -18,10 +18,8 @@ if (!is_null($events['events'])) {
 			error_log($event['message']['text']);
 			$text = $event['message']['text'];
 			$replyToken = $event['replyToken'];
-			## เปิดสำหรับใช้่งาน mysql message
 			// $text = searchMessage($text ,$conn);
 			$messages = setText($text);
-			//$messages = setFlex();
 			sentToLine( $replyToken , $access_token  , $messages );
 		}
 	}
@@ -36,54 +34,37 @@ function setText($text){
 	return $messages;
 }
 
-function setFlex(){
-	$message = '{
-		"type": "flex",
-		"altText": "Flex Message",
-		"contents": {
-		  "type": "bubble",
-		  "direction": "ltr",
-		  "header": {
-			"type": "box",
-			"layout": "vertical",
-			"contents": [
-			  {
-				"type": "text",
-				"text": "Header",
-				"align": "center"
-			  }
-			]
-		  },
-		  "hero": {
-			"type": "image",
-			"url": "https://developers.line.biz/assets/images/services/bot-designer-icon.png",
-			"size": "full",
-			"aspectRatio": "1.51:1",
-			"aspectMode": "fit"
-		  },
-		  "body": {
-			"type": "box",
-			"layout": "vertical",
-			"contents": [
-			  {
-				"type": "text",
-				"text": "Body",
-				"align": "center"
-			  }
-			]
-		  }
-		}
-	  }';
-	return $message;
-}
-
-function searchMessage($text , $conn){
-	$sql = "SELECT * FROM data where keyword='".$text."' ";
+function Find($text){
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "db_systemgarage";
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	$mysqli_set_charset($mysql, "utf8");
+	
+	$sql = "SELECT * FROM fixcar where f_tel ='".$text."' ";
 	$result = $conn->query($sql);
 	
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
-			$message = $row['intent'];
+			if($row['type_idfix'] == 1){
+				$message = "รอดำเนินการ";
+			}
+			else if($row['type_idfix'] == 2){
+				$message = "กำลังซ่อม";
+			}
+			else if($row['type_idfix'] == 3){
+				$message = "ซ่อมเสร็จ";
+			}
+			else if($row['type_idfix'] == 4){
+				$message = "รอการชำระเงิน";
+			}
+			else if($row['type_idfix'] == 5){
+				$message = "ชำระเงินเรียบร้อย";
+			}
+			else if($row['type_idfix'] == 6){
+				$message = "ระงับ";
+			}
 		}
 	} else {
 		$message = "ไม่เข้าใจอ่ะ";
