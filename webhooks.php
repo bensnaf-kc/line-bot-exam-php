@@ -44,7 +44,7 @@ function setCon($text){
 		}';
 		return $messages;
 	}else{
-		$sql = "SELCET * FROM fixcar WHERE f_tel = '$text'";
+		$sql = "SELCET * FROM fixcar WHERE f_tel = '".$text."'";
 		$result = $conn->query($sql);
 		
 		if ($result->num_rows > 0) {
@@ -60,21 +60,6 @@ function setCon($text){
 			return $messages;	
 		}
 	}
-}
-
-function searchMessage($text , $conn){
-	$sql = "SELECT * FROM data where keyword='".$text."' ";
-	$result = $conn->query($sql);
-	
-	if ($result->num_rows > 0) {
-		while($row = $result->fetch_assoc()) {
-			$message = $row['intent'];
-		}
-	} else {
-		$message = "ไม่เข้าใจอ่ะ";
-	}
-	$conn->close();
-	return $message;
 }
 
 function sentToLine($replyToken , $access_token  , $messages ){
