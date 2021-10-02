@@ -19,7 +19,7 @@ if (!is_null($events['events'])) {
 			$text = $event['message']['text'];
 			$replyToken = $event['replyToken'];
 			// $text = searchMessage($text ,$conn);
-			$messages = setText($text);
+			$messages = setFind($text);
 			sentToLine( $replyToken , $access_token  , $messages );
 		}
 	}
@@ -34,7 +34,7 @@ function setText($text){
 	return $messages;
 }
 
-function Find($text){
+function setFind($text){
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
