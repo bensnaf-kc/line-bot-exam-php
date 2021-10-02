@@ -40,47 +40,50 @@ if (!is_null($events['events'])) {
 			     "type" => "text",
 			     "text" => "ไม่มีข้อมูลที่ต้องการ"
 			     ];
-			     $replymessage = json_decode($message);
 			 } else {
 
-			   while($row = mysqli_fetch_array($getText)){
-				$Textcar = $row[0];
-			   }
-			   $sql_findCar = $mysql->query("SELECT * FROM `car` WHERE `id_fix`='$Textcar'");
-				 while($row_car = mysqli_fetch_array($getText)){
-					if($rowcar['type_idfix'] == 1 ){
-						$messages = [
-						"type" => "text",
-						"text" => "รอดำเนินการ"
-						];
-					}
-					else if($rowcar['type_idfix'] == 2 ){
-						$messages = [
-						"type" => "text",
-						"text" => "กำลังซ่อม"
-						];
-					}
-					else if($rowcar['type_idfix'] == 3 ){
-						$messages = [
-						"type" => "text",
-						"text" => "รอการชำระ"
-						];
-					}
-					else if($rowcar['type_idfix'] == 4 ){
-						$messages = [
-						"type" => "text",
-						"text" => "ชำระเรียบร้อย"
-						];
-					}
-					else if($rowcar['type_idfix'] == 5 ){
-						$messages = [
-						"type" => "text",
-						"text" => "ระงับ"
-						];
-					}
-				 }
-			 }
-
+// 			   while($row = mysqli_fetch_array($getText)){
+// 				$Textcar = $row[0];
+// 			   }
+// 			   $sql_findCar = $mysql->query("SELECT * FROM `car` WHERE `id_fix`='$Textcar'");
+// 				 while($row_car = mysqli_fetch_array($getText)){
+// 					if($rowcar['type_idfix'] == 1 ){
+// 						$messages = [
+// 						"type" => "text",
+// 						"text" => "รอดำเนินการ"
+// 						];
+// 					}
+// 					else if($rowcar['type_idfix'] == 2 ){
+// 						$messages = [
+// 						"type" => "text",
+// 						"text" => "กำลังซ่อม"
+// 						];
+// 					}
+// 					else if($rowcar['type_idfix'] == 3 ){
+// 						$messages = [
+// 						"type" => "text",
+// 						"text" => "รอการชำระ"
+// 						];
+// 					}
+// 					else if($rowcar['type_idfix'] == 4 ){
+// 						$messages = [
+// 						"type" => "text",
+// 						"text" => "ชำระเรียบร้อย"
+// 						];
+// 					}
+// 					else if($rowcar['type_idfix'] == 5 ){
+// 						$messages = [
+// 						"type" => "text",
+// 						"text" => "ระงับ"
+// 						];
+// 					}
+// 				 }
+// 			 }
+			$messages = [
+			     "type" => "text",
+			     "text" => "ไม่มีข้อมูลที่ต้องการ"
+			     ];
+			
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
