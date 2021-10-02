@@ -18,10 +18,9 @@ if (!is_null($events['events'])) {
 			error_log($event['message']['text']);
 			$text = $event['message']['text'];
 			$replyToken = $event['replyToken'];
-			## เปิดสำหรับใช้่งาน mysql message
 			// $text = searchMessage($text ,$conn);
-			// $messages = setText($text);
 			$messages = setText($text);
+ 			//$messages = setText($text);
 			sentToLine( $replyToken , $access_token  , $messages );
 		}
 	}
