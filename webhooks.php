@@ -29,10 +29,10 @@ if (!is_null($events['events'])) {
 
 
 function setText( $text){
-	$messages = [
+	$messages = '{
 		'type' => 'text',
 		'text' => $text
-	];
+	}';
 	return $messages;
 }
 
