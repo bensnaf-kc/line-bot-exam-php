@@ -3,6 +3,12 @@ include('connect.php');
 require "vendor/autoload.php";
 // include "admin/config.php";
 require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "mini";
+$conn = new mysqli($servername, $username, $password, $dbname);
+mysqli_set_charset($mysql, "utf8");
 
 $access_token = "Yc7epxagkTDtxlDZVmNicqE921hrLs3jn6fH/IWym3c1Wf7wHTuG7CfHoSuROOXiq0QGv37GiIHuMZvYVbAfcySjFifvh2kFd4/5azEHb1ZzyFvkFI6gQKR9JfBN1gdxwopvrIqeGf2hS1JD1BJ2eQdB04t89/1O/w1cDnyilFU=";
 
@@ -33,7 +39,7 @@ function setText($text){
 	return $messages;
 }
 
-function setFind($text){
+function setFind($text,$conn){
 	if($conn->connect_errno){
 		$messages = '{
 		"type" : "text",
@@ -51,36 +57,42 @@ function setFind($text){
 						"type" : "text",
 						"text" : "รอดำเนินการ"
 					}';
+					return $messages;
 				}
 				else if($row['type_idfix'] == 2){
 					$messages = '{
 						"type" : "text",
 						"text" : "กำลังซ่อม"
 					}';
+					return $messages;
 				}
 				else if($row['type_idfix'] == 3){
 					$messages = '{
 						"type" : "text",
 						"text" : "ซ่อมสำเร็จ"
 					}';
+					return $messages;
 				}
 				else if($row['type_idfix'] == 4){
 					$messages = '{
 						"type" : "text",
 						"text" : "รอการชำระเงิน"
 					}';
+					return $messages;
 				}
 				else if($row['type_idfix'] == 5){
 					$messages = '{
 						"type" : "text",
 						"text" : "ชำระเงินเรียบร้อย"
 					}';
+					return $messages;
 				}
 				else if($row['type_idfix'] == 6){
 					$messages = '{
 						"type" : "text",
 						"text" : "ระงับ"
 					}';
+					return $messages;
 				}
 			}
 		} else {
@@ -90,7 +102,6 @@ function setFind($text){
 			}';
 		}
 		$conn->close();
-		return $message;
 	}
 }
 
@@ -119,4 +130,3 @@ function sentToLine($replyToken , $access_token  , $messages ){
 	error_log("send ok");
 }
 ?>
-
