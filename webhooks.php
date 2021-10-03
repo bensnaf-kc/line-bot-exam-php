@@ -47,13 +47,13 @@ function setCon($text){
 		$getText = $mysql->query("SELECT * FROM `fixcar` WHERE `f_tel`='$text'");
 		$getNum = $getText->num_rows;
 		
-		while($row = $result->fetch_assoc()) {
-				$message = '{
-					"type" : "text",
-					"text" : "'.$row['type_idfix'];'"
-				}';
-			}
+		while($row = $getText->fetch_assoc()) {
+				$messages = [];
+				$messages['type'] = 'text';
+				$messages['text'] = $row['type_idfix'];
 				return $messages;
+			}
+			return $messages;
 	}
 }
 
