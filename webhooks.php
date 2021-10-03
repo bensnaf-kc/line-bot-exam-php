@@ -29,10 +29,10 @@ if (!is_null($events['events'])) {
 
 
 function setText($text){
-	$messages = [];
-	$messages['type'] = 'text';
-	$messages['text'] = $text;
-	return $messages;
+	$messages = '{
+		"type" : "text",
+		"text" : "'.$text.'"
+	}';
 }
 
 function setCon($text){
