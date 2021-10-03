@@ -20,7 +20,7 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 			## เปิดสำหรับใช้่งาน mysql message
 			// $text = searchMessage($text ,$conn);
-			$messages = setCon($text);
+			$messages = setText($text);
 			//$messages = setFlex();
 			sentToLine( $replyToken , $access_token  , $messages );
 		}
@@ -29,10 +29,9 @@ if (!is_null($events['events'])) {
 
 
 function setText($text){
-	$messages = '{
-		"type" : "text",
-		"text" : "'.$text.'"
-	}';
+	$messages = [];
+	$messages['type'] = 'text';
+	$messages['text'] = $text;
 	return $messages;
 }
 
