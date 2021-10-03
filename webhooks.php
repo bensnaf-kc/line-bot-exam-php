@@ -51,7 +51,7 @@ function setCon($text){
 				$message = '{
 					"type" : "text",
 					"text" : "'.$row['type_idfix'];'"
-				}'
+				}';
 			}
 				return $messages;
 	}
